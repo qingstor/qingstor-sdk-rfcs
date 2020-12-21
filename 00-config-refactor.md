@@ -80,6 +80,11 @@ By default, `disable_dual_stack` will be `false`.
 
 The related env key is `QINGSTOR_DISABLE_DUAL_STACK`.
 
+### Anonymous API call support
+
+If either `access_key_id` or `secret_access_key` is empty, SDK should return an initiation error.
+If both `access_key_id` and `secret_access_key` is empty, SDK should ignore sign logic and send anonymous API directly.
+
 ## Rationale
 
 TODO
