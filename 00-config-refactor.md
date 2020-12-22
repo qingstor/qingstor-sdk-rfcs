@@ -74,11 +74,11 @@ The related env key is `QINGSTOR_ENABLE_VIRTUAL_HOST_STYLE`.
 
 SDK should support both `ipv6` and `ipv4`.
 
-We will introduce a new config: `disable_dual_stack`. If set to `true`, SDK will disable IPv6 support and use IPv4 only.
+We will introduce a new config: `enable_dual_stack`. If set to `true`, SDK will enable IPv6 support.
 
-By default, `disable_dual_stack` will be `false`.
+By default, `enable_dual_stack` will be `false`.
 
-The related env key is `QINGSTOR_DISABLE_DUAL_STACK`.
+The related env key is `QINGSTOR_ENABLE_DUAL_STACK`.
 
 ### Anonymous API call support
 
