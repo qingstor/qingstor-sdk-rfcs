@@ -64,7 +64,8 @@ The default value for `endpoint` is `https://qingstor.com`
 
 SDK should support both `virtual host style` and `path style`.
 
-We will introduce a new config: `enable_virtual_host_style`. If set to `true`, SDK will use `virtual host style` for all API calls.
+We will introduce a new config: `enable_virtual_host_style`. If set to `true`, SDK will use `virtual host style` for all
+API calls.
 
 By default, `enable_virtual_host_style` will be `false`.
 
@@ -82,12 +83,33 @@ The related env key is `QINGSTOR_ENABLE_DUAL_STACK`.
 
 ### Anonymous API call support
 
-If either `access_key_id` or `secret_access_key` is empty, SDK should return an initiation error.
-If both `access_key_id` and `secret_access_key` is empty, SDK should ignore sign logic and send anonymous API directly.
+If either `access_key_id` or `secret_access_key` is empty, SDK should return an initiation error. If
+both `access_key_id` and `secret_access_key` is empty, SDK should ignore sign logic and send anonymous API directly.
 
 ## Rationale
 
-TODO
+### Why introduce Environment First Config?
+
+Our current design supports only two kinds: passing directly into the code and reading from the default path, but this
+is not enough.
+
+For example, in container and Serverless runtime environments, developers don't have the ability to control the runtime
+environment and expose the key directly, so the more common way to configure it is to pass it in via environment
+variables. If our SDK did not provide such a capability, then all developers using our SDK would need to handle the
+logic themselves, which is unnecessary and could be provided by us. In addition to environment variables, we will
+subsequently support the acquisition of keys from IAM, etc.
+
+In addition, we have the ability to provide such a mechanism, which is standard practice for major cloud providers.
+
+For example:
+
+- AWS: <https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/loading-node-credentials-environment.html>
+  provides `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`
+- Google Cloud: <https://cloud.google.com/docs/authentication/production#auth-cloud-implicit-go>
+  provides `GOOGLE_APPLICATION_CREDENTIALS`
+
+In particular, we need to support many private cloud clients, so we need to expose other configuration items in addition
+to credentials.
 
 ## Compatibility
 
@@ -99,4 +121,4 @@ After two minor versions, we can remove all warning messages and deprecated func
 
 ## Implementation
 
-TODO
+This RFC will be implemented by SDK maintainers.
