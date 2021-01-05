@@ -52,6 +52,8 @@ Integration tests SHOULD be run on our own github actions runners.
 
 SDK SHOULD implement BDD tests described via [qingstor-sdk-test-scenarios](https://github.com/qingstor/qingstor-sdk-test-scenarios).
 
+Tests SHOULD be initiated via environment values directly. (We will set those values before github action runner started via github.)
+
 Tests will be running in the same bucket allocated statically.
 
 Tests SHOULD be executed at every commit and periodically(in order to prevent server side regression).
