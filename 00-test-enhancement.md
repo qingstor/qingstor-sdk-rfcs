@@ -17,6 +17,8 @@ During unit tests, SDK SHOULD NOT:
 - send any HTTP requests;
 - use any production values, valid access keys and secret keys, production host and zone names, etc.
 
+Tests SHOULD be executed at every commit.
+
 SDK should implement following unit test cases:
 
 #### Build Request
@@ -51,6 +53,8 @@ Integration tests SHOULD be run on our own github actions runners.
 SDK SHOULD implement BDD tests described via [qingstor-sdk-test-scenarios](https://github.com/qingstor/qingstor-sdk-test-scenarios).
 
 Tests will be running in the same bucket allocated statically.
+
+Tests SHOULD be executed at every commit and periodically(in order to prevent server side regression).
 
 ## Compatibility
 
