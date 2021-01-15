@@ -13,17 +13,22 @@ In the SDK, this is basically achieved by setting the x-meta-data parameter to m
 2. Handle the header key from user in SDK, i.e. user only needs to set {"k": "v"} in the x-meta-data map.
   - The advantage is that the information is more explicit and less redundant
   - The disadvantage is that the user may set key as "x-qs-meta-k", so we will have a "x-qs-meta-x-qs-meta-k": "v", such metadata, and the user should not want a metadata like that.1
-
-## Proposal
-
-So I propose that we should think one more step further, and check for the user at the SDK level, as detailed below.
-When iterate through the x-meta-data map.
+  
+3. Check for the user at the SDK level, as detailed below. 
+   (When iterate through the x-meta-data map as example)
   - if the user's key starts with "x-qs-meta-", then we don't need to do any processing, just set the header
   - else manually add the "x-qs-meta-" prefix to it and set the header
 
-This is compatible with the above two cases, even if the user really wants to set a metadata key as "x-qs-meta-x-qs-meta-k", he only needs to pass this key.
+## Proposal
+
+As the result after discussion, we will take the second way to handle metadata,
+so that only one way was offered for developers, which would make our behaviour
+more understandable and unified. 
 
 ## Rationale
+
+* Easy for developers to use
+* More understandable and behaviour-unified in docs
 
 ## Compatibility
 
