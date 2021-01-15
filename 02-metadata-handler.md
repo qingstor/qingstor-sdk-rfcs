@@ -12,10 +12,12 @@ So I propose a way to parse the `x-meta-data` map into http header.
 ## Proposal
 
 In each SDK, the `x-meta-data` map should be parsed into http header when build the request.
-The developer only needs to set {"k": "v"} in the `x-meta-data` map, and the prefix `x-qs-meta-`
-will be added when build request.
+The developer only needs to set `{"k": "v"}` in the `x-meta-data` map, and the prefix `x-qs-meta-`
+will be added when build request. So the parsed http header will be `{"x-qs-meta-k": "v"}`.
+
 On one hand, this ensures all k-v pairs available for QingStor API, 
 more explicit and less redundant information for developers. 
+
 On the other hand, only one way was offered for developers, which would make our behaviour 
 more understandable and unified.
 
